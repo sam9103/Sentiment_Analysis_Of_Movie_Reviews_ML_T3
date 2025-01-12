@@ -8,8 +8,8 @@ import re
 app = Flask(__name__)
 
 
-model = load_model('saved_model/lstm_model.keras')
-with open('saved_model/tokenizer.pkl', 'rb') as file:
+model = load_model('sentiment_analysis/saved_model/lstm_model.keras')
+with open('sentiment_analysis/saved_model/tokenizer.pkl', 'rb') as file:
     tokenizer = pickle.load(file)
 
 maxlen = 100
