@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from waitress import serve
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import pickle
@@ -22,6 +23,7 @@ def validate_text(input_text):
     return bool(pattern.match(input_text))
 
 @app.route('/', methods=['GET', 'POST'])
+
 def home():
     sentiment = None
     error_message = None
@@ -43,5 +45,5 @@ def home():
 
     return render_template('index.html', sentiment=sentiment, error_message=error_message)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    serve(app, host='0.0.0.0', port=8000)
